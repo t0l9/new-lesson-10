@@ -1,8 +1,12 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Locale;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
@@ -10,7 +14,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class FormTestsAuto {
+public class FormTestsAuto extends TestData{
 
     @BeforeAll
     static void beforeAll(){
@@ -18,15 +22,27 @@ public class FormTestsAuto {
         Configuration.baseUrl = "https://demoqa.com";
     }
 
+    @BeforeEach
+    void beforeEach(){
+
+    }
+
     @Test
     void hardTest() {
+        Faker faker = new Faker(new Locale("ru"));
+
+        String userName = faker.name().firstName();
+        String lastName = faker.name().lastName();
+        String userEmail = faker.internet().emailAddress();
+        String streetAdress = faker.address().streetAddress();
+
         open("/automation-practice-form");
 
         $(".text-center")
                 .shouldHave(text("Practice Form"));
-        $("#firstName").setValue("Anatoliy");
-        $("#lastName").setValue("Kolyshkin");
-        $("#userEmail").setValue("t0l4ik.kas1@gmail.com");
+        $("#firstName").setValue(userName);
+        $("#lastName").setValue(lastName);
+        $("#userEmail").setValue(userEmail);
 
         $("#genterWrapper").$(byText("Male")).click();
 
@@ -41,7 +57,7 @@ public class FormTestsAuto {
 
         $("#uploadPicture").uploadFromClasspath("img/1.png");
 
-        $("#currentAddress").setValue("Almaty");
+        $("#currentAddress").setValue(streetAdress);
 
         $("#state").click();
         $("#stateCity-wrapper")

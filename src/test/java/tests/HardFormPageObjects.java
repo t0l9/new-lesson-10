@@ -1,7 +1,11 @@
 package tests;
 
 
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
+
+import java.util.Locale;
+
 import static com.codeborne.selenide.Selenide.*;
 
 public class HardFormPageObjects extends TestBase {
@@ -9,13 +13,15 @@ public class HardFormPageObjects extends TestBase {
     @Test
     void seccessfulRegistrationTest() {
 
-        String name = "Anatoliy";
-        String lastName = "Kolyshkin";
-        String email = "t0l4ik.kas1@gmail.com";
+        Faker faker = new Faker(new Locale("ru"));
+
+        String name = faker.name().firstName();
+        String lastName = faker.name().lastName();
+        String email = faker.internet().emailAddress();
         String gender = "Male";
         String number = "4545444444";
         String hobbies = "Sports";
-        String currentCity = "Almaty";
+        String currentCity = faker.address().fullAddress();
         String imagePath = "img/1.png";
         String state = "NCR";
         String city = "Delhi";
@@ -43,7 +49,6 @@ public class HardFormPageObjects extends TestBase {
 
     @Test
     void openCalendar() {
-
         String[] date = {"14", "February", "1996"};
 
         open("/automation-practice-form");
