@@ -1,6 +1,7 @@
 package tests;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 
@@ -34,6 +35,7 @@ public class HardFormPageObjects extends TestBase {
 
     @DisplayName("Проверка ввода даты рождения")
     @Test
+    @Tag("DATE_OF_BERSTDAY")
     void openCalendar() {
         String[] date = {"14", "February", "1996"};
 
