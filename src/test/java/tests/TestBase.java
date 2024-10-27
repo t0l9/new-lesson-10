@@ -4,8 +4,9 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import pages.RegistrationPage;
 
-public class TestBase {
+public class TestBase{
     RegistrationPage registrationPage = new RegistrationPage();
+    TestData data = new TestData();
 
     @BeforeAll
     static void beforeAll(){

@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Locale;
@@ -27,6 +28,7 @@ public class FormTestsAuto extends TestData{
 
     }
 
+    @DisplayName("автотест на форму авторизации сложную")
     @Test
     void hardTest() {
         Faker faker = new Faker(new Locale("ru"));
